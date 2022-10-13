@@ -14,4 +14,8 @@ public class Constants {
     public static final String TREE = "\uD83C\uDF32";
     public static final String KEY = "\uD83D\uDDDD";
 
+    public static final int MODE_NORMAL = 1;
+    public static final int MODE_ADVANCE = 2;
+
+
 }

@@ -31,10 +31,10 @@ public class main {
         Mapper mapper = new Mapper();
         int[][] cells = mapper.createCells(board, rows, columns);
         Board gameBoard = mapper.createBoard(cells, goalValue, rows, columns);
+        Board.mode = Constants.MODE_ADVANCE;
         System.out.println(gameBoard.toString());
 
         Hashtable<String, Boolean> initHash = new Hashtable<>();
-//        initHash.put(Cell.getWarrior().toString(), true);
         Node start = new Node(gameBoard, null, NONE, initHash);
         BFS bfs = new BFS();
         bfs.search(start);

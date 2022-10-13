@@ -1,5 +1,7 @@
 package model;
 
+import core.Constants;
+
 import static model.Movement.*;
 
 public class Board {
@@ -7,6 +9,7 @@ public class Board {
     int col;
     int goalValue;
     int[][] cells;
+    public static int mode = Constants.MODE_NORMAL;
 
     public Board(int row, int col, int[][] cells, int goalValue) {
         this.cells = cells;
@@ -32,8 +35,13 @@ public class Board {
         for (int j = 0; j < col; j++) {
             for (int i = 0; i < row; i++) {
                 if (canMoveTo(i, j, LEFT)) {
-                    tempCells[i][j - 1] += tempCells[i][j];
-                    tempCells[i][j] = 0;
+                    if (mode == Constants.MODE_ADVANCE && (tempCells[i][j - 1] == tempCells[i][j] || tempCells[i][j - 1] == 0)) {
+                        tempCells[i][j - 1] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    } else if (mode == Constants.MODE_NORMAL) {
+                        tempCells[i][j - 1] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    }
                 }
             }
         }
@@ -46,8 +54,13 @@ public class Board {
         for (int j = col - 1; j >= 0; j--) {
             for (int i = 0; i < row; i++) {
                 if (canMoveTo(i, j, RIGHT)) {
-                    tempCells[i][j + 1] += tempCells[i][j];
-                    tempCells[i][j] = 0;
+                    if (mode == Constants.MODE_ADVANCE && (tempCells[i][j + 1] == tempCells[i][j] || tempCells[i][j + 1] == 0)) {
+                        tempCells[i][j + 1] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    } else if (mode == Constants.MODE_NORMAL) {
+                        tempCells[i][j + 1] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    }
                 }
             }
         }
@@ -59,8 +72,13 @@ public class Board {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (canMoveTo(i, j, UP)) {
-                    tempCells[i - 1][j] += tempCells[i][j];
-                    tempCells[i][j] = 0;
+                    if (mode == Constants.MODE_ADVANCE && (tempCells[i - 1][j] == tempCells[i][j] || tempCells[i - 1][j] == 0)) {
+                        tempCells[i - 1][j] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    } else if (mode == Constants.MODE_NORMAL) {
+                        tempCells[i - 1][j] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    }
                 }
             }
         }
@@ -72,9 +90,13 @@ public class Board {
         for (int i = row - 1; i >= 0; i--) {
             for (int j = 0; j < col; j++) {
                 if (canMoveTo(i, j, DOWN)) {
-                    tempCells[i + 1][j] += tempCells[i][j];
-                    //ye rule kam dare - > age yeksan boodan in anjam she but anyway
-                    tempCells[i][j] = 0;
+                    if (mode == Constants.MODE_ADVANCE && (tempCells[i][j] == tempCells[i + 1][j] || tempCells[i + 1][j] == 0)) {
+                        tempCells[i + 1][j] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    } else if (mode == Constants.MODE_NORMAL) {
+                        tempCells[i + 1][j] += tempCells[i][j];
+                        tempCells[i][j] = 0;
+                    }
                 }
             }
         }

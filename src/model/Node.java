@@ -11,6 +11,7 @@ public class Node {
     Movement previousMovement;
     private Hashtable<String, Boolean> repeatedStates;
 
+
     public Node(Board board, Node parent, Movement previousMovement, Hashtable<String, Boolean> repeated) {
         this.parent = parent;
         this.board = board;
@@ -31,7 +32,7 @@ public class Node {
 
 
     public void drawState() {
-        System.out.println("move to : " + this.previousMovement);
+        System.out.println("moved to : " + this.previousMovement);
         for (int i = 0; i < board.row; i++) {
             for (int j = 0; j < board.col; j++) {
                 System.out.print(Constants.ANSI_BRIGHT_GREEN + board.cells[i][j] + spaceRequired(board.cells[i][j]));

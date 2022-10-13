@@ -14,7 +14,7 @@ public class BFS {
         Hashtable<String, Boolean> inFrontier = new Hashtable<>();
         Hashtable<String, Boolean> explored = new Hashtable<>();
         if (startNode.isGoal()) {
-            System.out.println("you win! ");
+            System.out.println("you win!");
             printResult(startNode, 0);
             return;
         }
@@ -37,9 +37,7 @@ public class BFS {
                 }
             }
         }
-
         System.out.println("no solution");
-
     }
 
     public void printResult(Node node, int depthCounter) {
