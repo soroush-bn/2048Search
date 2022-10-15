@@ -3,33 +3,26 @@ package model;
 import core.Constants;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class Node {
     Board board;
     Node parent;
     Movement previousMovement;
-    private Hashtable<String, Boolean> repeatedStates;
 
-
-    public Node(Board board, Node parent, Movement previousMovement, Hashtable<String, Boolean> repeated) {
+    public Node(Board board, Node parent, Movement previousMovement) {
         this.parent = parent;
         this.board = board;
         this.previousMovement = previousMovement;
-        Hashtable<String, Boolean> hashtableTemp = new Hashtable<String, Boolean>(repeated);
-        hashtableTemp.put(this.hash(), true);
-        this.repeatedStates = hashtableTemp;
     }
 
     public ArrayList<Node> successor() {
         ArrayList<Node> result = new ArrayList<Node>();
-        result.add(new Node(board.moveLeft(), this, Movement.LEFT, repeatedStates));
-        result.add(new Node(board.moveRight(), this, Movement.RIGHT, repeatedStates));
-        result.add(new Node(board.moveDown(), this, Movement.DOWN, repeatedStates));
-        result.add(new Node(board.moveUp(), this, Movement.UP, repeatedStates));
+        result.add(new Node(board.moveLeft(), this, Movement.LEFT));
+        result.add(new Node(board.moveRight(), this, Movement.RIGHT));
+        result.add(new Node(board.moveDown(), this, Movement.DOWN));
+        result.add(new Node(board.moveUp(), this, Movement.UP));
         return result;
     }
-
 
     public void drawState() {
         System.out.println("moved to : " + this.previousMovement);
@@ -38,10 +31,8 @@ public class Node {
                 System.out.print(Constants.ANSI_BRIGHT_GREEN + board.cells[i][j] + spaceRequired(board.cells[i][j]));
             }
             System.out.println();
-
         }
         System.out.println("-----------------------------------------");
-
     }
 
     public boolean isGoal() {

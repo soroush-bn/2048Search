@@ -19,7 +19,6 @@ public class main {
         int rows = Integer.parseInt(mn.split(" ")[0]);
         int columns = Integer.parseInt(mn.split(" ")[1]);
 
-
         String[][] board = new String[rows][columns];
         String[] lines = new String[rows];
         for (int i = 0; i < rows; i++) {
@@ -31,13 +30,15 @@ public class main {
         Mapper mapper = new Mapper();
         int[][] cells = mapper.createCells(board, rows, columns);
         Board gameBoard = mapper.createBoard(cells, goalValue, rows, columns);
-        Board.mode = Constants.MODE_ADVANCE;
+        Board.mode = Constants.MODE_NORMAL;
         System.out.println(gameBoard.toString());
 
         Hashtable<String, Boolean> initHash = new Hashtable<>();
-        Node start = new Node(gameBoard, null, NONE, initHash);
+        Node start = new Node(gameBoard, null, NONE);
+//        BFS bfs = new BFS();
+//        DFS dfs = new DFS();
+//        dfs.search(start);
         BFS bfs = new BFS();
         bfs.search(start);
-
     }
 }

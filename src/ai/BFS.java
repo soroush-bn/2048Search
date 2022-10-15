@@ -12,7 +12,6 @@ public class BFS {
     public void search(Node startNode) {
         Queue<Node> frontier = new LinkedList<Node>();
         Hashtable<String, Boolean> inFrontier = new Hashtable<>();
-        Hashtable<String, Boolean> explored = new Hashtable<>();
         if (startNode.isGoal()) {
             System.out.println("you win!");
             printResult(startNode, 0);
@@ -23,10 +22,9 @@ public class BFS {
         while (!frontier.isEmpty()) {
             Node temp = frontier.poll();
             inFrontier.remove(temp.hash());
-            explored.put(temp.hash(), true);
             ArrayList<Node> children = temp.successor();
             for (Node child : children) {
-                if (!(inFrontier.containsKey(child.hash())) && !(explored.containsKey(child.hash()))) {
+                if (!(inFrontier.containsKey(child.hash()))) {
                     if (child.isGoal()) {
                         printResult(child, 0);
                         System.out.println("you win !!!");
@@ -49,6 +47,5 @@ public class BFS {
         node.drawState();
         printResult(node.getParent(), depthCounter + 1);
     }
-
 
 }
