@@ -14,6 +14,7 @@ remove the new tile per each move policy so the deterministic nature of the prob
 * There are 2 modes for the game :
   1. normal mode, in which two tiles can be merged without any constraint
   2. advance mode, in which two tiles can only be merged if they have the same value, e.g. both are 4.
+  
 * there are four movements in the game and with each movement, only one shift will occur.
   e.g. consider you move left, then all the coloumn will shift one place to the left side and the left-most coloumn would'nt change but (if possible) will be merged with its neighbour coloumn.
 
@@ -24,11 +25,12 @@ remove the new tile per each move policy so the deterministic nature of the prob
   2. IDS
   3. UCS
   4. BDS (extra point)
+  
 * Implement ** Informed Searches ** :
   1. A*
   2. IDA*
   3. GBFS
-  4 RBFS (extra point)
+  4. RBFS (extra point)
 
 p.s. BFS is implemented for you.
 
